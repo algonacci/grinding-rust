@@ -1,28 +1,21 @@
 use std::io;
 
-fn main() {
-    println!("Masukkan angka: ");
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    println!("Masukkan angka:");
 
     let mut input = String::new();
-    io::stdin().read_line(&mut input).expect("Gagal membaca input");
+    io::stdin().read_line(&mut input)?;
 
-    let finish: i32 = match input.trim().parse() {
-        Ok(num) => num,
-        Err(_) => {
-            println!("Gagal membaca input");
-            return;
-        }
-    };
+    let finish: i32 = input.trim().parse().map_err(|_| "Input tidak valid, masukkan angka!")?;
 
     for num in 1..=finish {
-        if num % 3 == 0 && num % 5 == 0 {
-            println!("Fizz Buzz");
-        } else if num % 3 == 0 {
-            println!("Fizz");
-        } else if num % 5 == 0 {
-            println!("Buzz");
-        } else {
-            println!("{}", num);
+        match (num % 3, num % 5) {
+            (0, 0) => println!("Fizz Buzz"),
+            (0, _) => println!("Fizz"),
+            (_, 0) => println!("Buzz"),
+            _ => println!("{}", num),
         }
     }
+
+    Ok(())
 }
