@@ -6,7 +6,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut input = String::new();
     io::stdin().read_line(&mut input)?;
 
-    let finish: i32 = input.trim().parse().map_err(|_| "Input tidak valid, masukkan angka!")?;
+    let finish: i32 = input
+        .trim()
+        .parse()
+        .map_err(|_| "Input tidak valid, masukkan angka!")?;
 
     for num in 1..=finish {
         match (num % 3, num % 5) {
