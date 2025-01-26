@@ -20,7 +20,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Generate angka acak antara 1 dan 100
     let secret_number = rand::thread_rng().gen_range(1..=100);
 
+    let max_attempts = 10;
+    let mut attempts = 0;
+
     loop {
+        attempts += 1;
+        if attempts > max_attempts {
+            println!("Anda kalah! Angka rahasianya adalah: {}", secret_number);
+            break;
+        }
+
         // Membaca input dari pengguna
         let input = match read_input() {
             Some(num) => num,
@@ -47,7 +56,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 }
             }
             Ordering::Equal => {
-                println!("Selamat, tebakanmu benar!");
+                println!("Selamat, tebakanmu benar! Anda menebak {} kali.", attempts);
                 break;
             }
         }
