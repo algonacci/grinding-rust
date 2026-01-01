@@ -1,0 +1,10 @@
+[package]
+name = "compress_pdf"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+lopdf = "0.34.0"
+image = "0.25.5"
+mozjpeg = "0.10.13"
+
