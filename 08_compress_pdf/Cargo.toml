@@ -7,4 +7,6 @@ edition = "2024"
 lopdf = "0.34.0"
 image = "0.25.5"
 mozjpeg = "0.10.13"
+rayon = "1.11.0"
+flate2 = "1.1.5"
 
